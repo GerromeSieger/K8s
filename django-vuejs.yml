@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: django-crud
+spec:
+   replicas: 5
+   selector:
+    matchLabels:
+      app: crud
+      tier: backend
+      track: stable
+   template:
+    metadata:
+      labels:
+        app: crud
+        tier: backend
+        track: stable
+    spec:
+      containers:
+      - name: app-django
+        image: gerrome/crud-vuejs-django_backend:1.0 
+        ports:
+        - containerPort: 8000
+      #- name: app-nginx
+      #  image: gerrome/crud-vuejs-django_nginx:1.0
+      #  ports:
+      #  - containerPort: 80
