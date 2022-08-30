@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: nginx-react
+spec:
+   replicas: 3
+   selector:
+    matchLabels:
+      app: dr
+      tier: frontend
+      track: stable
+   template:
+    metadata:
+      labels:
+        app: dr
+        tier: frontend
+        track: stable
+    spec:
+      containers:
+      - name: app-nginx
+        image: gerrome/django-react3_nginx:1
+        
+       
+      
+      

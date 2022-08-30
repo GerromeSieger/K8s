@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: django-react
+spec:
+   replicas: 3
+   selector:
+    matchLabels:
+      app: dr
+      tier: backend
+      track: stable
+   template:
+    metadata:
+      labels:
+        app: dr
+        tier: backend
+        track: stable
+    spec:
+      containers:
+      - name: app-django
+        image: gerrome/django-react3_backend:1.0
+        ports:
+        - containerPort: 8000
+      #- name: app-nginx
+      #  image: gerrome/crud-vuejs-django_nginx:1.0
+      #  ports:
+      #  - containerPort: 80
