@@ -18,7 +18,8 @@ spec:
     spec:
       containers:
       - name: app-django
-        image: gerrome/django-react3_backend:1.0
+        image: gerrome/django-react3_backend:1
+        imagePullPolicy: Always
         ports:
         - containerPort: 8000
       #- name: app-nginx
