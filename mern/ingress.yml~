@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Ingress 
+metadata:
+  name: my-ingress
+spec:
+   rules:
+   - hosts: victor@Node4
+     http:
+      paths:
+      - backend:
+          serviceName: srv-mern
+          servicePort: 80
