@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment 
 metadata:
   name: nginx-react
-  namespace: django-react-postgres
+  namespace: drp
 spec:
    replicas: 3
    selector:

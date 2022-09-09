@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service 
 metadata:
   name: service-dr
-  namespace: django-react-postgres
+  namespace: drp
 spec:
    selector:
       app: dr

@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment 
 metadata:
   name: django-react
-  namespace: django-react-postgres
+  namespace: drp
 spec:
    replicas: 3
    selector:
@@ -23,7 +23,4 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8000
-      #- name: app-nginx
-      #  image: gerrome/crud-vuejs-django_nginx:1.0
-      #  ports:
-      #  - containerPort: 80
+     
