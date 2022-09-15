@@ -29,9 +29,11 @@ kind: Service
 metadata:
   name: srv-mern
 spec:
-   selector:
-      app: mern
-   ports:
-      - protocol: TCP
-        port: 80
-        targetPort: 5000
+  selector:
+     app: mern
+#  type: LoadBalancer
+  ports:
+     - protocol: TCP
+       port: 80
+       targetPort: 5000
+ #      nodePort: 30000
