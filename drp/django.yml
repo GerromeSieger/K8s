@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment 
 metadata:
   name: django-react
-  namespace: drp
+#  namespace: drp
 spec:
    replicas: 3
    selector:
@@ -23,4 +23,41 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8000
-     
+---
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: nginx-react
+#  namespace: drp
+spec:
+   replicas: 3
+   selector:
+    matchLabels:
+      app: dr
+      tier: frontend
+      track: stable
+   template:
+    metadata:
+      labels:
+        app: dr
+        tier: frontend
+        track: stable
+    spec:
+      containers:
+      - name: app-nginx
+        image: gerrome/django-react2_nginx:1
+---
+apiVersion: v1
+kind: Service 
+metadata:
+  name: srv-dr
+#  namespace: drp
+spec:
+   selector:
+      app: dr
+   type: LoadBalancer
+   ports:
+      - protocol: TCP
+        port: 80
+        targetPort: 80
+        nodePort: 30000        

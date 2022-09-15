@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment 
 metadata:
   name: django-nginx
-  namespace: cvd
+#  namespace: cvd
 spec:
    replicas: 3
    selector:
@@ -20,7 +20,48 @@ spec:
       containers:
       - name: app-nginx
         image: gerrome/crud-vuejs-django_nginx:1.2
-        
-       
-      
-      
+---
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: django-crud
+#  namespace: cvd
+spec:
+   replicas: 5
+   selector:
+    matchLabels:
+      app: crud
+      tier: backend
+      track: stable
+   template:
+    metadata:
+      labels:
+        app: crud
+        tier: backend
+        track: stable
+    spec:
+      containers:
+      - name: app-django
+        image: gerrome/crud-vuejs-django_backend:1.0 
+        ports:
+        - containerPort: 8000
+      #- name: app-nginx
+      #  image: gerrome/crud-vuejs-django_nginx:1.0
+      #  ports:
+      #  - containerPort: 80
+---
+apiVersion: v1
+kind: Service 
+metadata:
+  name: srv-cvd
+#  namespace: cvd
+spec:
+   selector:
+      app: crud
+ #  type: LoadBalancer
+   ports:
+      - protocol: TCP
+        port: 80
+        targetPort: 80
+  #      nodePort: 30001
+  

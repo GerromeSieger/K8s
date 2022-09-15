@@ -1,26 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment 
 metadata:
-  name: nginx-react
+  name: django-react
   namespace: drp
 spec:
    replicas: 3
    selector:
     matchLabels:
       app: dr
-      tier: frontend
+      tier: backend
       track: stable
    template:
     metadata:
       labels:
         app: dr
-        tier: frontend
+        tier: backend
         track: stable
     spec:
       containers:
-      - name: app-nginx
-        image: gerrome/django-react2_nginx:1
-        
-       
-      
-      
+      - name: app-django
+        image: gerrome/django-react2_backend:1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+     
